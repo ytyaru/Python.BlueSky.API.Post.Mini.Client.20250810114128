@@ -10,11 +10,11 @@ Implement the minimum client to post BlueSky in Python.
 ![eye_catch][]
 ![failed][]
 
-[first]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/first.png?raw=true
-[select_handle]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/select_handle.png?raw=true
-[over_300]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/over_300.png?raw=true
-[eye_catch]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/eye_catch.png?raw=true
-[failed]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/failed.png?raw=true
+[first]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/memo/first.png?raw=true
+[select_handle]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/memo/select_handle.png?raw=true
+[over_300]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/memo/over_300.png?raw=true
+[eye_catch]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/memo/eye_catch.png?raw=true
+[failed]:https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128/raw/master/memo/failed.png?raw=true
 
 # Features
 
