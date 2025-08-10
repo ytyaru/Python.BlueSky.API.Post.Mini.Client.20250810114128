@@ -25,7 +25,10 @@ def valid_user(user):
 
 
 def main(page: ft.Page):
-    page.fonts = {"JapaneseFont": "/home/pi/.fonts/NotoSansJP-VariableFont_wght.ttf"}
+    # https://flet.dev/docs/cookbook/fonts/
+    page.fonts = {"JapaneseFont": "/home/pi/.fonts/NotoSansJP-Regular.otf"}
+#    page.fonts = {"JapaneseFont": "/home/pi/.fonts/NotoSansJP-VariableFont_wght.ttf"}
+    page.theme = ft.Theme(font_family="JapaneseFont")  # Default app font
     #page.add(ft.Text("こんにちは", font_family="JapaneseFont"))
 #    page.add(ft.Text("Hello World !!"))
 #    page.add(ft.Text("こんにちは/n世界！", font_family="JapaneseFont", size=64, weight=ft.FontWeight.BOLD))
