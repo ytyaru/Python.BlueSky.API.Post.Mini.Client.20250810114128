@@ -3,7 +3,8 @@
 import sys
 from atproto import Client, client_utils
 import csv
-
+from collections import namedtuple
+'''
 class User:
     def __init__(self, handle, app_pw, did=''):
         print(f'{handle} {app_pw} {did} {isinstance(did, str)} {not did}')
@@ -28,15 +29,26 @@ class User:
 #        self.__did = client.get_profile(self.handle).did if self.did is None else self.did
         except Exception as e:
             print(f'ログインに失敗しました。/n{e}', file=sys.stderr)
+'''
 
 
 #def main(handle, password) -> None:
 def main() -> None:
+    User = namedtuple('User', 'handle app_pw did')
     users = []
+    with open('users.tsv', encoding='utf-8', newline='') as f:
+        reader = csv.reader(f, delimiter='\t')
+        next(reader) # 一行目を読み飛ばす
+        for d in map(User._make, reader):
+            print(d)
+            users.append(d)
+
+    '''
     with open('users.tsv', encoding='utf-8', newline='') as f:
         for row in csv.DictReader(f, delimiter='\t'):
             try: users.append(row)
             except Exception as e: print(e, file=sys.stderr)
+    '''
     '''
     with open('users.tsv', encoding='utf-8', newline='') as f:
         for cols in csv.reader(f, delimiter='\t'):
@@ -45,9 +57,9 @@ def main() -> None:
     '''
     print('TSV読込完了')
     for user in users:
-        print(f'{user}')
-#        print(f'{user.handle} {user.app_pw} {user.did}')
-        print(f"{user['handle']} {user['app_pw']} {user['did']}")
+#        print(f'{user}')
+        print(f'{user.handle} {user.app_pw} {user.did}')
+#        print(f"{user['handle']} {user['app_pw']} {user['did']}")
 
 
 #    client = Client(base_url='https://bsky.social')
