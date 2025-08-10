@@ -34,13 +34,20 @@ class User:
 def main() -> None:
     users = []
     with open('users.tsv', encoding='utf-8', newline='') as f:
+        for row in csv.DictReader(f, delimiter='\t'):
+            try: users.append(row)
+            except Exception as e: print(e, file=sys.stderr)
+    '''
+    with open('users.tsv', encoding='utf-8', newline='') as f:
         for cols in csv.reader(f, delimiter='\t'):
             try: users.append(User(*cols))
             except Exception as e: print(e, file=sys.stderr)
-
+    '''
     print('TSV読込完了')
     for user in users:
-        print(f'{user.handle} {user.app_pw} {user.did}')
+        print(f'{user}')
+#        print(f'{user.handle} {user.app_pw} {user.did}')
+        print(f"{user['handle']} {user['app_pw']} {user['did']}")
 
 
 #    client = Client(base_url='https://bsky.social')
