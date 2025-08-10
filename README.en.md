@@ -57,17 +57,13 @@ Linux raspberrypi 6.12.34+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~book
 REPO=Python.BlueSky.API.Post.Mini.Client.20250810114128
 git clone https://github.com/ytyaru/$REPO
 cd $REPO
-source src/5/mkvenv.sh
-cd BskyMinClient
-python main.py
+./src/5/startup.sh
 ```
 
 # Startup
 
 ```sh
-cd $REPO
-source src/5/mkvenv.sh
-python main.py
+./src/5/startup.sh
 ```
 
 # Note

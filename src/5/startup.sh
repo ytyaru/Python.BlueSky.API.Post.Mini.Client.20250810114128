@@ -39,4 +39,4 @@ exist
 	echo '環境構築完了！';
 }
 cd "$VENV_NAME"
-
+./main.py
