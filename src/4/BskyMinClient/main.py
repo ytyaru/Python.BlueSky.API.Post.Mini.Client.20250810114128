@@ -61,15 +61,19 @@ def main(page: ft.Page):
 
     def dropdown_changed(e):
         print(e)
-        e.control.color = e.control.value
+        print(e.control.value)
+        user = list(filter(lambda u: u.handle == e.control.value, users))[0]
+        print(user)
+#        e.control.color = e.control.value
+        post_content.focus = True
         page.update()
-    dd = ft.Dropdown(
+    handleDD = ft.Dropdown(
         editable=True,
         label="handles",
         options=[ft.DropdownOption(key=user.handle, content=ft.Text(f"{user.handle}")) for user in users],
         on_change=dropdown_changed,
     )
-    page.add(dd)
+    page.add(handleDD)
 
 
 
@@ -85,17 +89,61 @@ def main(page: ft.Page):
         print(ft.Text(e.control.value, font_family="JapaneseFont"))
         page.update()
 
-    tf = ft.TextField(
+    post_content = ft.TextField(
         label=ft.Text("投稿内容", font_family="JapaneseFont", size=16, weight=ft.FontWeight.BOLD),
 #        value=ft.Text("UIから入力すると日本語が文字化けする。文字が豆腐になる。", font_family="JapaneseFont", size=16, weight=ft.FontWeight.BOLD),
-        value="UIから入力すると日本語が文字化けする。文字が豆腐になる。",
+        value="""Python + Flet で BlueSkyに投稿します。
+
+https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128
+
+#BlueSky #Python #Flet #プログラミング""",
         multiline=True,
-        min_lines=1,
+#        min_lines=1,
 #        max_lines=5,
         on_change=textfield_changed,
 #        font_family="JapaneseFont",
     )
-    page.add(tf)
+    page.add(post_content)
+
+    
+    def button_clicked(e):
+        print(f'投稿内容：{post_content.value}')
+        user = list(filter(lambda u: u.handle == handleDD.value, users))[0]
+        print(user)
+        try:
+            client = Client(base_url='https://bsky.social')
+            client.login(user.handle, user.app_pw)
+            print('ログイン成功！')
+            result.color = 'green'
+            result.value = 'ログイン成功！'
+            page.update()
+        except Exception as e:
+            print(f"ログイン失敗：{e}")
+            result.color = 'red'
+            result.value = 'ログイン失敗orz'
+            page.update()
+            return
+        try:
+            client.send_post(post_content.value)
+            print('投稿成功！')
+            result.color = 'green'
+            result.value = '投稿成功！'
+            page.update()
+        except Exception as e:
+            print(f"投稿失敗：{e}")
+            result.color = 'red'
+            result.value = '投稿失敗orz'
+            page.update()
+            return
+    page.add(ft.OutlinedButton("投稿する", on_click=button_clicked, data=post_content.value))
+
+    result = ft.Text(value='', color='red', size=32)
+    page.add(result)
+
+    def set_focus_on_load(e):
+        handleDD.focus = True
+        page.update()
+    page.on_load = set_focus_on_load
 
     # ページを更新
     page.update()
