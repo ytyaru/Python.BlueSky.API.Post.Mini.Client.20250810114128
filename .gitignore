@@ -1,0 +1,6 @@
+*.pyc
+src/*/BskyMinClient/include/
+src/*/BskyMinClient/lib/
+src/*/BskyMinClient/lib64
+src/*/BskyMinClient/bin/
+src/*/BskyMinClient/pyvenv.cfg
