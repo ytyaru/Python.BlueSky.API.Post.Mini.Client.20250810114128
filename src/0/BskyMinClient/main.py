@@ -3,7 +3,8 @@
 import sys
 from atproto import Client, client_utils
 import csv
-from collections import namedtuple
+#from collections import namedtuple
+from typing import NamedTuple
 '''
 class User:
     def __init__(self, handle, app_pw, did=''):
@@ -31,10 +32,14 @@ class User:
             print(f'ログインに失敗しました。/n{e}', file=sys.stderr)
 '''
 
+class User(NamedTuple):
+    handle: str
+    app_pw: str
+    did: str
 
 #def main(handle, password) -> None:
 def main() -> None:
-    User = namedtuple('User', 'handle app_pw did')
+#    User = namedtuple('User', 'handle app_pw did')
     users = []
     with open('users.tsv', encoding='utf-8', newline='') as f:
         reader = csv.reader(f, delimiter='\t')
