@@ -9,8 +9,8 @@ function exist() { [ -f "$VENV_ACT" ] && return 0 || return 1; }
 function addx() { chmod +x "$VENV_ACT"; }
 function make() { addx; python -m venv "$VENV_NAME"; }
 function activate() { source "$VENV_ACT"; }
-function install() {  }
-function installAtproto() {pip install atproto;}
+function install() { installAtproto; installFlet; }
+function installAtproto() { pip install atproto; }
 function installFlet() {
 	# Fletを使うにはLinuxの場合以下コマンドが必要。
 	sudo apt update -y
