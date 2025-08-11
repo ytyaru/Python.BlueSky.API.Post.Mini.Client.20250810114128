@@ -67,7 +67,13 @@ class MentionBuilder: # @handle
                 s = match.start()
                 e = match.end()
                 t = match.string[s:e]
+                # メンションの値にはDIDを渡せとドキュメンには書いてあるが、ハンドルでも成功か試してみる。
+                # https://atproto.blue/en/latest/atproto/atproto_client.utils.text_builder.html#atproto_client.utils.text_builder.TextBuilder.mention
+                # 次のようなエラー応答が返ってきた。やはりハンドルはダメでDIDであるべきのようだ。
+                # status_code=400, error='InvalidRequest', 
+                # message='Invalid app.bsky.feed.post record: Record/facets/0/features/0/did must be a valid did'
                 contents.append(Content(s, e, 'mention', t, get_did(t[1:])))
+#                contents.append(Content(s, e, 'mention', t, t[1:]))
         return contents
 
 
@@ -199,7 +205,8 @@ https://github.com/ytyaru/Python.BlueSky.API.Post.Mini.Client.20250810114128
             page.update()
         except Exception as e:
             result.color = 'red'
-            result.value = '投稿失敗orz'
+            result.value = '投稿失敗orz/n{e.error}¥n{e.message}'
+            print(f'投稿失敗。:{e}')
             page.update()
             return
     post_button = ft.OutlinedButton("投稿する", on_click=button_clicked, data=post_content.value)
