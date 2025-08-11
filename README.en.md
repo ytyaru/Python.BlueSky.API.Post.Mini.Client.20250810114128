@@ -19,8 +19,12 @@ Implement the minimum client to post BlueSky in Python.
 # Features
 
 * Build: [Python][]
-* BlueSky API: [atproto][]
 * GUI: [Flet][]
+* BlueSky API: [atproto][]
+    * Supported rich text
+        * URL: `https://`
+        * mention: `@handle`(`@ytyaru.bsky.social`等)
+        * hashTag: `#tag`
 
 [Python]:https://www.python.org/
 [atproto]:https://github.com/MarshalX/atproto
@@ -57,22 +61,18 @@ Linux raspberrypi 6.12.34+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~book
 REPO=Python.BlueSky.API.Post.Mini.Client.20250810114128
 git clone https://github.com/ytyaru/$REPO
 cd $REPO
-./src/5/startup.sh
+./src/6/startup.sh
 ```
 
 # Startup
 
 ```sh
-./src/5/startup.sh
+./src/6/startup.sh
 ```
 
 # Note
 
-* Only plain text posts are allowed (the following are not supported):
-    * Rich text
-        * URL links
-        * Tags
-        * Mentions
+* Only rich text posts are allowed (the following are not supported):
     * Link cards
     * Images and videos
     * Threads

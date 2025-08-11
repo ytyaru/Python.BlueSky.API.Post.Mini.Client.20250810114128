@@ -19,8 +19,12 @@
 # 特徴
 
 * Build: [Python][]
-* BlueSky API: [atproto][]
 * GUI: [Flet][]
+* BlueSky API: [atproto][]
+    * リッチテキストに対応
+        * URL: `https://`
+        * mention: `@handle`(`@ytyaru.bsky.social`等)
+        * hashTag: `#tag`
 
 [Python]:https://www.python.org/
 [atproto]:https://github.com/MarshalX/atproto
@@ -55,26 +59,19 @@ Linux raspberrypi 6.12.34+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~book
 REPO=Python.BlueSky.API.Post.Mini.Client.20250810114128
 git clone https://github.com/ytyaru/$REPO
 cd $REPO
-./src/5/mkvenv.sh
+./src/6/startup.sh
 ```
 
 # GUI起動
 
 ```sh
 cd $REPO
-./src/5/mkvenv.sh
+./src/6/startup.sh
 ```
-
-　`mkvenv.sh`はインストール済みなら仮想環境をアクティベートする。これはライブラリの参照に必要なので必須の操作。（一々手動でsourceしなくちゃいけないから面倒極まりない。`source`の代わりに`.`と表記して省略できるが焼け石に水）
-
 
 # 注意
 
-* プレーンテキスト投稿しかできません（次のようなことができません）
-    * リッチテキスト
-        * URLリンク
-        * タグ
-        * メンション
+* リッチテキスト投稿しかできません（次のようなことができません）
     * リンクカード
     * 画像、動画
     * スレッド
